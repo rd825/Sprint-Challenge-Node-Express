@@ -1,13 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Route } from "react-router-dom";
+import Projects from './components/Projects';
 
-class App extends Component {
-  render() {
+const App = () => {
     return (
       <div className="App">
-        Hello World
+
+        <Route exact path='/' 
+          render={(props) => (
+            <Projects {...props} />
+          )} 
+        />
+
       </div>
     );
-  }
 }
 
 export default App;
