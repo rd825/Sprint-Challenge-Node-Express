@@ -2,7 +2,8 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon"
+    "start": "node index.js",
+    "server": "nodemon"
   },
   "dependencies": {
     "cors": "^2.8.5",
