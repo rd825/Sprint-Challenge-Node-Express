@@ -7,6 +7,9 @@ module.exports = (req, res, next) => {
         else if (name.length > 128) {
             res.send({message: 'Make sure your name is less than 128 chars.'});
         }
+        else {
+            next();
+        }
     } else {
         next();
     }

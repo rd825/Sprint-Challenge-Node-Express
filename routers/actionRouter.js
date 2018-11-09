@@ -3,7 +3,7 @@ const router = express.Router();
 const actionDB = require('../data/helpers/actionModel');
 
 // custom middleware
-const projectCheck = require('../config/projectCheck');
+const actionCheck = require('../config/actionCheck');
 
 // ACTION RELATED ROUTING ----------------------------------------------------------------------------------------------
 
@@ -26,7 +26,7 @@ router.get('/:id', (req, res) => {
         .catch(err => res.status(500).json({message: "The action could not be retrieved"}))  
 })
 
-router.post('/', (req, res) => {
+router.post('/', actionCheck, (req, res) => {
     const {project_id, description, notes} = req.body;
     if (!project_id || !description || !notes) {
         res.status(400).json({message: "Please provide a project id, description, and notes for the action"});
@@ -52,7 +52,7 @@ router.delete('/:id', (req, res) => {
              })
 })
 
-router.put('/:id', (req, res) => {
+router.put('/:id', actionCheck, (req, res) => {
     const {project_id, description, notes} = req.body;
     if (!project_id || !description || !notes) {
         res.status(400).json({message: "Please provide a project id, description, and notes for the action"});
