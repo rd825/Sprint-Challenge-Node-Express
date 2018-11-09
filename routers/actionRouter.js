@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const actionDB = require('../data/helpers/actionModel');
 
+// custom middleware
+const projectCheck = require('../config/projectCheck');
+
 // ACTION RELATED ROUTING ----------------------------------------------------------------------------------------------
 
 router.get('/', (req, res) => {
