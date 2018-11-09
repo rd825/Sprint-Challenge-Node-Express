@@ -23,6 +23,19 @@ router.get('/:id', (req, res) => {
         .catch(err => res.status(500).json({message: "The project could not be retrieved"}))  
 })
 
+router.get('/:id/actions', (req, res) => {
+    const {id} = req.params;
+    projectDB.getProjectActions(id)
+        .then(actions => {
+            if (id) {
+                res.status(200).json(actions);
+            } else {
+                res.status(404).json({message: "The project with the specified ID does not exist."});
+            }
+        })
+        .catch(err => res.status(500).json({message: "The actions could not be retrieved"})) 
+})
+
 router.post('/', (req, res) => {
     const {name, description} = req.body;
     if (!name || !description) {
@@ -55,9 +68,9 @@ router.put('/:id', (req, res) => {
         res.status(400).json({message: "Please provide a name and description for the project"});
     } else {
         projectDB.update(req.params.id, req.body)
-                .then(post => {
-                    if (post) {
-                        res.status(200).json(post)
+                .then(project => {
+                    if (project) {
+                        res.status(200).json(project)
                     } else {
                         res.status(404).json({message: "The project with the specified ID does not exist."});
                     }
