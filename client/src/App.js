@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route } from "react-router-dom";
 import Projects from './components/Projects';
+import Project from './components/Project';
 
 const App = () => {
     return (
@@ -10,6 +11,13 @@ const App = () => {
           render={(props) => (
             <Projects {...props} />
           )} 
+        />
+
+        <Route
+          path="/:id"
+          render={props => (
+            <Project {...props} />
+          )}
         />
 
       </div>

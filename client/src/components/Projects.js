@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import Name from './Name';
 
 class Projects extends Component {
     constructor() {
@@ -10,7 +11,7 @@ class Projects extends Component {
     }
     
     componentDidMount() {
-        axios.get('http://localhost:9000/api/projects/')
+        axios.get('https://node-exp-sprint.herokuapp.com/api/projects')
              .then(res => this.setState({projects: res.data}))
              .catch(err => console.dir(err))
     }
@@ -19,7 +20,7 @@ class Projects extends Component {
         if (this.state.projects !== null) {
             return ( 
                 <>
-                {this.state.projects.map(project => <p key={project.id}>{project.name}</p>)}
+                {this.state.projects.map(project => <Name key={project.id} project={project}/>)}
                 </>
             );
         } else {
